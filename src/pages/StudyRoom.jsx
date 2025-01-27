@@ -1,5 +1,6 @@
 // src/pages/StudyRoom.jsx
 import React from 'react';
+import Tool from '../components/Tool';
 
 function StudyRoom() {
   return (
@@ -9,6 +10,7 @@ function StudyRoom() {
         이곳에서 화면 공유, 유튜브 링크 추가, 스터디 타이머 등을 구현할
         예정입니다.
       </p>
+      <Tool />
     </div>
   );
 }
