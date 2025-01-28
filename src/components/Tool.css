@@ -3,52 +3,47 @@
 .tool-container {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background-color: #007bff; /* 파란색 배경 추가 */
-  padding: 1rem;
-  border-radius: 8px; /* 둥근 테두리 (선택 사항) */
+  gap: 16px;
+  background-color: #007bff;
+  padding: 8px;
+  border-radius: 8px;
 }
 
-.app-mode-dropdown {
-  background: none;
+.upgrade-button,
+.user-metrics-button {
+  background: transparent;
   border: none;
+  color: white;
   cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: color 0.2s;
 }
 
-.button-content {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #fff; /* 텍스트 색상 흰색으로 설정 */
+.upgrade-button:hover,
+.user-metrics-button:hover {
+  color: #fbbf24;
 }
 
-.icon-left,
-.icon-right {
-  fill: #fff; /* 아이콘 색상 흰색으로 설정 */
+/* 모달 열려 있을 때, 타이머 버튼 빨간색 표시 */
+.timer-active {
+  color: red !important;
 }
 
 .separator {
   width: 1px;
   height: 24px;
-  background-color: #ccc;
+  background-color: #ffffff;
 }
 
 .user-metrics-btn {
   position: relative;
 }
 
-.user-metrics-button,
-.upgrade-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 .metric-count {
-  /* 메트릭 카운트 스타일 (필요 시 추가) */
-  color: #fff; /* 텍스트 색상 흰색으로 설정 */
+  /* 필요에 따라 추가 스타일 */
 }
 
-.react-tooltip {
-  /* react-tooltip 기본 스타일을 사용하므로 추가 스타일 불필요 */
+.button-content {
+  /* 필요에 따라 추가 스타일 */
 }
