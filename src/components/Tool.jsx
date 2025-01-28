@@ -3,18 +3,20 @@ import React, { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css';
 import './Tool.css';
-import TimerModal from './TimerModal';
+import DraggableModal from './DraggableModal';
 
 function Tool() {
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
+  const [isDdayModalOpen, setIsDdayModalOpen] = useState(false);
 
-  // 모달 열고 닫기(토글)
+  // 모달 열고 닫기(토글) - 타이머
   const toggleTimerModal = () => {
     setIsTimerModalOpen((prev) => !prev);
   };
 
-  const closeTimerModal = () => {
-    setIsTimerModalOpen(false);
+  // 모달 열고 닫기(토글) - 디데이
+  const toggleDdayModal = () => {
+    setIsDdayModalOpen((prev) => !prev);
   };
 
   return (
@@ -26,7 +28,7 @@ function Tool() {
         }
         data-tooltip-id="timer-tip"
         data-tooltip-content="타이머"
-        onClick={toggleTimerModal} // 버튼 클릭 시 모달 열리고 닫힘
+        onClick={toggleTimerModal}
       >
         <div className="button-content">타이머</div>
       </button>
@@ -35,9 +37,12 @@ function Tool() {
 
       {/* D-day 버튼 */}
       <button
-        className="upgrade-button"
+        className={
+          isDdayModalOpen ? 'upgrade-button timer-active' : 'upgrade-button'
+        }
         data-tooltip-id="dday-tip"
         data-tooltip-content="디데이 설정"
+        onClick={toggleDdayModal}
       >
         <div className="button-content">D-day</div>
       </button>
@@ -75,8 +80,25 @@ function Tool() {
       </button>
       <Tooltip id="cancel-share-tip" place="top" type="dark" effect="solid" />
 
-      {/* TimerModal 컴포넌트 추가 */}
-      <TimerModal isOpen={isTimerModalOpen} onClose={closeTimerModal} />
+      {/* 타이머 모달 */}
+      <DraggableModal
+        isOpen={isTimerModalOpen}
+        onClose={() => setIsTimerModalOpen(false)}
+        title="타이머 설정"
+      >
+        <p>타이머 설정을 여기에 추가하세요.</p>
+        {/* 필요한 추가 내용, 폼 등을 넣어도 됨 */}
+      </DraggableModal>
+
+      {/* 디데이 모달 */}
+      <DraggableModal
+        isOpen={isDdayModalOpen}
+        onClose={() => setIsDdayModalOpen(false)}
+        title="디데이 설정"
+      >
+        <p>디데이 설정을 여기에 추가하세요.</p>
+        {/* D-day 관련 폼이나 내용 */}
+      </DraggableModal>
     </div>
   );
 }
