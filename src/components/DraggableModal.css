@@ -1,0 +1,52 @@
+/* src/components/DraggableModal.css */
+
+/* 오버레이 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none; /* 클릭 이벤트 무시 */
+}
+
+/* 모달 창 스타일 */
+.modal {
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  pointer-events: auto; /* 모달 자체는 클릭 가능 */
+}
+
+/* 모달 헤더 스타일 */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ddd;
+  cursor: grab; /* 드래그 가능함을 나타내는 커서 */
+}
+
+.modal-header:active {
+  cursor: grabbing;
+}
+
+/* 닫기 버튼 스타일 */
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* 모달 내용 스타일 */
+.modal-content {
+  padding: 20px;
+}
