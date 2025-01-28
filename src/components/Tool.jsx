@@ -18,6 +18,17 @@ function Tool() {
 
       <span className="separator"></span>
 
+      {/* D-day 버튼 */}
+      <button
+        className="upgrade-button"
+        data-tooltip-id="upgrade-tip"
+        data-tooltip-content="디데이 설정"
+      >
+        <div className="button-content">D-day</div>{' '}
+      </button>
+
+      <span className="separator"></span>
+
       {/* 화면공유 버튼 */}
       <div className="user-metrics-btn">
         <button
