@@ -80,7 +80,7 @@ function DraggableModal({ isOpen, onClose, title, children }) {
     <div className="pointer-events-none fixed left-0 top-0 z-[1000] h-full w-full">
       {/* 모달 박스 */}
       <div
-        className="pointer-events-auto absolute h-[300px] w-[400px] rounded-lg bg-white shadow-lg"
+        className="pointer-events-auto absolute h-[200px] w-[300px] rounded-lg bg-white shadow-lg"
         style={{
           top: modalPosition.y,
           left: modalPosition.x,
