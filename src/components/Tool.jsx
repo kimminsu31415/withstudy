@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip"; // 화면공유 툴팁 용도
 import "react-tooltip/dist/react-tooltip.css"; // 툴팁 CSS
 import DraggableModal from "./DraggableModal"; // 드래그 모달 (Tailwind 버전)
 
-function Tool() {
+function Tool({ setVideoUrl }) {
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [isDdayModalOpen, setIsDdayModalOpen] = useState(false);
 
@@ -18,8 +18,22 @@ function Tool() {
     setIsDdayModalOpen((prev) => !prev);
   };
 
+  const handleVideoUpload = () => {
+    // 간단히 하드코딩된 유튜브 URL 설정
+    // (실제로는 prompt창 등을 이용해 사용자가 입력한 url을 setVideoUrl할 수도 있음)
+    setVideoUrl("https://www.youtube.com/embed/dQw4w9WgXcQ");
+  };
+
   return (
     <div className="flex h-14 w-full items-center justify-center gap-4 rounded-lg bg-black p-2">
+      {/* 예시: 영상 올리기 버튼 */}
+      <button
+        onClick={handleVideoUpload}
+        className="rounded bg-blue-500 px-4 py-2 hover:bg-blue-600"
+      >
+        영상 올리기
+      </button>
+
       {/* 타이머 버튼 */}
       <button
         onClick={toggleTimerModal}

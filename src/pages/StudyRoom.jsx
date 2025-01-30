@@ -1,21 +1,21 @@
 // src/pages/StudyRoom.jsx
-import React from "react";
+import React, { useState } from "react";
 import MainContent from "../components/MainContent";
 import Tool from "../components/Tool";
 
 function StudyRoom() {
+  // 영상 URL을 저장할 상태. 없으면 null
+  const [videoUrl, setVideoUrl] = useState(null);
+
   return (
-    // 1) 화면 전체를 flex col로 구성
     <div className="flex h-screen flex-col bg-[#222222] text-center font-Pretendard">
-      {/* 2) 메인 콘텐츠: flex-1로 남은 공간을 전부 차지 */}
+      {/* 메인 콘텐츠 (flex-1로 툴 제외한 남은 공간 채우기) */}
       <div className="flex-1">
-        <MainContent />
+        <MainContent videoUrl={videoUrl} />
       </div>
 
-      {/* 3) Tool: 아래쪽에 위치 (flex-col의 마지막) */}
-      <div>
-        <Tool />
-      </div>
+      {/* 하단 툴 */}
+      <Tool setVideoUrl={setVideoUrl} />
     </div>
   );
 }
