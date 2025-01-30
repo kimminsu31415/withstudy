@@ -19,7 +19,7 @@ function Tool() {
   };
 
   return (
-    <div className="flex items-center gap-4 rounded-lg bg-[#007bff] p-2">
+    <div className="flex h-14 w-full items-center justify-center gap-4 rounded-lg bg-black p-2">
       {/* 타이머 버튼 */}
       <button
         onClick={toggleTimerModal}
