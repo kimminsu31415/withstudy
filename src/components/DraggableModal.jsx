@@ -93,13 +93,13 @@ function DraggableModal({ isOpen, onClose, title, children }) {
     <div className="pointer-events-none fixed left-0 top-0 z-[1000] h-full w-full">
       {/* 모달 박스 */}
       <div
-        className="pointer-events-auto absolute h-[300px] w-[400px] rounded-lg bg-white shadow-lg"
+        className="pointer-events-auto absolute h-[200px] w-[300px] rounded-lg bg-white shadow-lg"
         style={{ top: modalPosition.y, left: modalPosition.x }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* 헤더 (드래그 핸들) */}
         <div
-          className="flex cursor-grab items-center justify-between border-b border-gray-300 bg-gray-100 p-3"
+          className="flex h-[40px] cursor-grab items-center justify-between border-gray-300 bg-gray-100 p-3"
           onMouseDown={onMouseDown}
         >
           <h2 className="text-lg font-semibold">{title}</h2>
