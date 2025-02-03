@@ -5,7 +5,14 @@ function Test() {
     <div className="relative flex min-h-screen w-full bg-[#222222] text-white">
       {/* 메인콘텐츠 */}
       <div className="mx-auto w-full max-w-[calc(100%-80px)] bg-slate-500">
-        <div className="bg-slate-300">1번 동영상</div>
+        <div className="relative w-full">
+          {/* 16:9 aspect ratio wrapper */}
+          <div className="pb-[56.25%]">
+            <div className="absolute left-0 top-0 h-full w-full bg-slate-300">
+              1번 동영상
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 메인-마진40퍼 적용 Toolbar (하단 고정 & 마진 유지) */}
