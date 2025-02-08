@@ -26,21 +26,22 @@ function App() {
         {/* 영상이 2개 이하일 때 1x2 배열 */}
         {videos.length <= 2 && (
           <div className="grid grid-cols-2 gap-4">
-            {videos.map((video, index) => (
-              <div
-                key={index}
-                className="flex aspect-video flex-1 items-center justify-center bg-black text-white"
-              >
-                Video {video}
-              </div>
-            ))}
+            <div className="flex aspect-video flex-1 items-center justify-center bg-black text-white">
+              Me
+            </div>
+            <div className="flex aspect-video flex-1 items-center justify-center bg-black text-white">
+              Video 1
+            </div>
           </div>
         )}
 
         {/* 영상이 3개일 때, 가운데 정렬 */}
         {videos.length === 3 && (
           <div className="grid grid-cols-2 grid-rows-2 gap-4">
-            {videos.slice(0, 2).map((video, index) => (
+            <div className="flex aspect-video flex-1 items-center justify-center bg-black text-white">
+              Me
+            </div>
+            {videos.slice(0, 1).map((video, index) => (
               <div
                 key={index}
                 className="flex aspect-video flex-1 items-center justify-center bg-black text-white"
@@ -49,18 +50,23 @@ function App() {
               </div>
             ))}
             {/* 가운데 정렬을 위한 빈 div */}
-            <div className="col-span-2 flex justify-center">
+            <div className="col-span-2 flex justify-center bg-red-200">
               <div className="flex aspect-video max-w-[50%] flex-1 items-center justify-center bg-black text-white">
-                Video {videos[2]}
+                Video {videos[1]}
               </div>
             </div>
           </div>
         )}
 
-        {/* 영상이 4개일 때 2x2 배열 */}
+        {/* 영상이 4개일 때: 2x2 배열 */}
         {videos.length === 4 && (
-          <div className="grid grid-cols-2 grid-rows-2 gap-4">
-            {videos.map((video, index) => (
+          <div className="grid grid-cols-2 gap-4">
+            {/* 첫 번째 셀: Me */}
+            <div className="flex aspect-video flex-1 items-center justify-center bg-black text-white">
+              Me
+            </div>
+            {/* 나머지 셀: videos 배열의 두 번째 요소부터 렌더링 */}
+            {videos.slice(1).map((video, index) => (
               <div
                 key={index}
                 className="flex aspect-video flex-1 items-center justify-center bg-black text-white"
