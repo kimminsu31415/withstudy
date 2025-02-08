@@ -71,6 +71,23 @@ function App() {
           </div>
         )}
       </div>
+
+      {/* 하단 Toolbar */}
+      <div className="absolute bottom-3 left-0 right-0 mx-auto w-full max-w-[calc(100%-80px)]">
+        <div className="flex h-14 items-center justify-center rounded-lg bg-black px-4">
+          <div className="flex gap-8 text-white">
+            <button>
+              <p>비디오 ON</p>
+            </button>
+            <button>
+              <p>영상 추가</p>
+            </button>
+          </div>
+          <button className="absolute right-3 rounded-md bg-red-600 px-2 py-1">
+            <p>나가기</p>
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
