@@ -12,14 +12,31 @@ function Test() {
     videoRows.push(videos.slice(i, i + 2));
   }
 
+  const toggleFullScreen = () => {
+    // 현재 전체화면 모드가 아니라면 전체화면 요청
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.error(
+          `전체 화면 모드 활성화 중 오류 발생: ${err.message} (${err.name})`,
+        );
+      });
+    } else {
+      // 이미 전체화면 모드라면 전체화면 종료 요청
+      document.exitFullscreen();
+    }
+  };
+
   return (
     <div className="relative flex min-h-screen w-full bg-[#222222] text-white">
       {/* 메인 콘텐츠 */}
-      <div className="mx-auto flex w-full max-w-[calc(100%-80px)] flex-col items-center justify-center bg-slate-500">
+      <div className="mx-auto flex w-full max-w-[calc(100%-80px)] flex-col items-center justify-center desktop:px-36">
         {/* 영상 영역: 각 행을 flex 컨테이너로 구성 */}
-        <div className="flex max-h-screen w-full flex-col gap-5 bg-red-300">
+        <div className="flex max-h-screen w-full flex-col gap-5 desktop:gap-10">
           {videoRows.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex w-full justify-center gap-5">
+            <div
+              key={rowIndex}
+              className="flex w-full justify-center gap-5 desktop:gap-10"
+            >
               {row.map((video, index) => (
                 <div
                   key={index}
@@ -36,16 +53,19 @@ function Test() {
       {/* 하단 Toolbar */}
       <div className="absolute bottom-3 left-0 right-0 mx-auto w-full max-w-[calc(100%-80px)]">
         <div className="flex h-14 items-center justify-center rounded-lg bg-black px-4">
-          <div className="flex gap-8">
-            <button>
+          <div className="flex gap-8 text-white">
+            <button className="hover:text-orange-400">
               <p>비디오 ON</p>
             </button>
-            <button>
+            <button className="hover:text-orange-400">
               <p>영상 추가</p>
             </button>
           </div>
-          <button className="absolute right-3 rounded-md bg-red-600 px-2 py-1">
-            <p>나가기</p>
+          <button
+            onClick={toggleFullScreen}
+            className="absolute right-3 rounded-md bg-red-600 px-2 py-1 text-white hover:bg-red-700"
+          >
+            <p>꽉 채우기</p>
           </button>
         </div>
       </div>
