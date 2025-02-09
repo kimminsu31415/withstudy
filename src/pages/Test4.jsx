@@ -13,20 +13,6 @@ function Test4() {
     videoRows.push(videos.slice(i, i + 2));
   }
 
-  const toggleFullScreen = () => {
-    // 현재 전체화면 모드가 아니라면 전체화면 요청
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error(
-          `전체 화면 모드 활성화 중 오류 발생: ${err.message} (${err.name})`,
-        );
-      });
-    } else {
-      // 이미 전체화면 모드라면 전체화면 종료 요청
-      document.exitFullscreen();
-    }
-  };
-
   return (
     <div className="relative flex min-h-screen w-full bg-[#222222] text-white">
       {/* 메인 콘텐츠 */}
