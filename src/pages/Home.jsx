@@ -13,6 +13,18 @@ function Home() {
     navigate("/test");
   };
 
+  const handleTest2Page = () => {
+    navigate("/test2");
+  };
+
+  const handleTest3Page = () => {
+    navigate("/test3");
+  };
+
+  const handleTest4Page = () => {
+    navigate("/test4");
+  };
+
   return (
     <div style={styles.container}>
       <h1>WithStudy</h1>
@@ -22,6 +34,15 @@ function Home() {
       </button>
       <button style={styles.studyButton} onClick={handleTestPage}>
         Test
+      </button>
+      <button style={styles.studyButton} onClick={handleTest2Page}>
+        Test2
+      </button>
+      <button style={styles.studyButton} onClick={handleTest3Page}>
+        Test3
+      </button>
+      <button style={styles.studyButton} onClick={handleTest4Page}>
+        Test4
       </button>
     </div>
   );
