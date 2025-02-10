@@ -1,6 +1,6 @@
 import React from "react";
 
-function TestTool() {
+function TestTool({ onAddVideo }) {
   const toggleFullScreen = () => {
     // 현재 전체화면 모드가 아니라면 전체화면 요청
     if (!document.fullscreenElement) {
@@ -22,7 +22,8 @@ function TestTool() {
           <button className="hover:text-orange-400">
             <p>비디오 ON</p>
           </button>
-          <button className="hover:text-orange-400">
+          {/* 영상 추가 버튼에 onAddVideo 함수 연결 */}
+          <button onClick={onAddVideo} className="hover:text-orange-400">
             <p>영상 추가</p>
           </button>
         </div>
