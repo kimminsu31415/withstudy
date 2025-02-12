@@ -4,7 +4,7 @@ import YouTubeEmbed from "./YouTubeEmbed";
 
 function MainContent({ videoUrl }) {
   return (
-    <div className="desktop:text-3xl tablet:text-2xl mobile:text-xl flex h-full w-full items-center justify-center bg-red-600 text-white">
+    <div className="flex h-full w-full items-center justify-center bg-[#222222] text-white mobile:text-xl tablet:text-2xl desktop:text-3xl">
       {videoUrl ? (
         <YouTubeEmbed url={videoUrl} />
       ) : (
