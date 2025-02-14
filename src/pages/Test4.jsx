@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import TestTool from "../components/TestTool";
+import UserCamera from "../components/UserCamera";
 
 function Test4() {
-  // youtube 링크들을 배열로 관리 (최대 3개)
+  // 유튜브 링크들을 배열로 관리 (최대 3개)
   const [youtubeLinks, setYoutubeLinks] = useState([]);
   // 모달 창(링크 입력창) 노출 여부 관리
   const [showInput, setShowInput] = useState(false);
   // 입력한 링크 값을 관리
   const [inputLink, setInputLink] = useState("");
+  // 카메라 on/off 상태 관리
+  const [cameraOn, setCameraOn] = useState(false);
 
   // 유튜브 URL을 embed URL로 변환하는 헬퍼 함수
   const getYoutubeEmbedUrl = (url) => {
@@ -57,12 +60,15 @@ function Test4() {
     setShowInput(false);
   };
 
-  // 항상 첫 번째는 'me' (사용자 카메라 화면)이며, 그 뒤로 입력된 유튜브 영상들이 추가됨
-  const videos = ["me", ...youtubeLinks];
+  // 카메라 on/off 상태 토글 함수
+  const toggleCamera = () => {
+    setCameraOn((prev) => !prev);
+  };
 
-  // 영상의 총 개수가 3개 이상(즉, 'me' 포함 3개 이상)이면 grid 레이아웃, 그렇지 않으면 flex 레이아웃 사용
+  // 영상의 총 개수 (카메라 영상 포함)이 3개 이상이면 grid, 그렇지 않으면 flex 레이아웃 사용
+  const totalVideos = 1 + youtubeLinks.length;
   const containerClass =
-    videos.length >= 3
+    totalVideos >= 3
       ? "grid grid-cols-2 gap-5 "
       : "flex w-full justify-center gap-5 ";
 
@@ -73,34 +79,35 @@ function Test4() {
         {/* 영상 영역 */}
         <div className="flex max-h-screen w-full flex-col gap-5">
           <div className={containerClass}>
-            {videos.map((video, index) => (
+            <div className="flex aspect-video w-full items-center justify-center bg-[#3F3F3F]">
+              {cameraOn ? <UserCamera /> : "me"}
+            </div>
+            {youtubeLinks.map((video, index) => (
               <div
                 key={index}
                 className="flex aspect-video w-full items-center justify-center bg-[#3F3F3F]"
               >
-                {video === "me" ? (
-                  // 'me' div는 카메라 화면 (여기서는 단순 텍스트 처리)
-                  "me"
-                ) : (
-                  // 입력된 유튜브 링크에 따른 iframe embed
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={video}
-                    title={`youtube-video-${index}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                )}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={video}
+                  title={`youtube-video-${index}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* 하단 Toolbar에 onAddVideo prop 전달 */}
-      <TestTool onAddVideo={openInputModal} />
+      {/* 하단 Toolbar에 onAddVideo, cameraOn, toggleCamera prop 전달 */}
+      <TestTool
+        onAddVideo={openInputModal}
+        cameraOn={cameraOn}
+        toggleCamera={toggleCamera}
+      />
 
       {/* 유튜브 링크 입력 모달 */}
       {showInput && (
