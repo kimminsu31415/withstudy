@@ -1,48 +1,54 @@
 import React, { useState } from "react";
 import TestTool from "../components/TestTool";
+import UserCamera from "../components/UserCamera";
 
 function Test4() {
-  // youtube 링크들을 배열로 관리 (최대 3개)
+  // 유튜브 링크 관리 (최대 3개)
   const [youtubeLinks, setYoutubeLinks] = useState([]);
-  // 모달 창(링크 입력창) 노출 여부 관리
+  // 유튜브 링크 입력 모달 표시 여부
   const [showInput, setShowInput] = useState(false);
-  // 입력한 링크 값을 관리
+  // 입력한 링크 값
   const [inputLink, setInputLink] = useState("");
+  // 카메라 on/off 상태 관리
+  const [cameraOn, setCameraOn] = useState(false);
+  // 배경색 관리 (기본값: #222222)
+  const [bgColor, setBgColor] = useState("#222222");
+  // 컬러 피커 표시 여부
+  const [showColorPicker, setShowColorPicker] = useState(false);
 
   // 유튜브 URL을 embed URL로 변환하는 헬퍼 함수
   const getYoutubeEmbedUrl = (url) => {
     try {
       const urlObj = new URL(url);
-      // 일반적인 youtube 링크: https://www.youtube.com/watch?v=VIDEO_ID
+      // 일반 링크: https://www.youtube.com/watch?v=VIDEO_ID
       if (urlObj.hostname.includes("youtube.com")) {
         const videoId = urlObj.searchParams.get("v");
         if (videoId) return `https://www.youtube.com/embed/${videoId}`;
       }
-      // 짧은 링크 형식: https://youtu.be/VIDEO_ID
+      // 짧은 링크: https://youtu.be/VIDEO_ID
       if (urlObj.hostname === "youtu.be") {
         const videoId = urlObj.pathname.slice(1);
         if (videoId) return `https://www.youtube.com/embed/${videoId}`;
       }
     } catch (e) {
-      console.error("유효하지 않은 URL입니다.", e);
+      console.error("Invalid URL.", e);
     }
-    // 변환에 실패하면 원본을 그대로 반환 (혹은 다른 처리를 할 수 있음)
     return url;
   };
 
-  // "영상 추가" 버튼 클릭 시 호출되는 함수 : 모달을 열어줌
+  // "영상 추가" 버튼 클릭 시 모달 열기
   const openInputModal = () => {
     if (youtubeLinks.length < 3) {
       setShowInput(true);
     } else {
-      alert("최대 3개의 영상만 추가할 수 있습니다.");
+      alert("You can add up to 3 videos only.");
     }
   };
 
-  // 모달의 확인 버튼 클릭 시 호출되는 함수
+  // 모달의 확인 버튼
   const handleOk = () => {
     if (inputLink.trim() === "") {
-      alert("유튜브 링크를 입력하세요.");
+      alert("Please enter a YouTube link.");
       return;
     }
     const embedLink = getYoutubeEmbedUrl(inputLink);
@@ -51,62 +57,104 @@ function Test4() {
     setShowInput(false);
   };
 
-  // 모달의 취소 버튼 클릭 시 호출되는 함수
+  // 모달의 취소 버튼
   const handleCancel = () => {
     setInputLink("");
     setShowInput(false);
   };
 
-  // 항상 첫 번째는 'me' (사용자 카메라 화면)이며, 그 뒤로 입력된 유튜브 영상들이 추가됨
-  const videos = ["me", ...youtubeLinks];
+  // 카메라 토글 함수
+  const toggleCamera = () => {
+    setCameraOn((prev) => !prev);
+  };
 
-  // 영상의 총 개수가 3개 이상(즉, 'me' 포함 3개 이상)이면 grid 레이아웃, 그렇지 않으면 flex 레이아웃 사용
+  // 컬러 피커 표시 토글 함수
+  const toggleColorPicker = () => {
+    setShowColorPicker((prev) => !prev);
+  };
+
+  // 배경색 변경 함수
+  const changeBackgroundColor = (color) => {
+    setBgColor(color);
+  };
+
+  // 영상 영역의 레이아웃 (카메라 영상 포함)
+  const totalVideos = 1 + youtubeLinks.length;
   const containerClass =
-    videos.length >= 3
-      ? "grid grid-cols-2 gap-5 "
-      : "flex w-full justify-center gap-5 ";
+    totalVideos >= 3
+      ? "grid grid-cols-2 gap-5"
+      : "flex w-full justify-center gap-5";
 
   return (
-    <div className="relative flex min-h-screen w-full bg-[#222222] text-white">
+    <div
+      style={{ backgroundColor: bgColor }}
+      className="relative flex min-h-screen w-full text-white"
+    >
       {/* 메인 콘텐츠 영역 */}
       <div className="mx-auto flex w-full max-w-[calc(100%-80px)] flex-col items-center justify-center desktop:px-20 desktop:pb-10">
-        {/* 영상 영역 */}
         <div className="flex max-h-screen w-full flex-col gap-5">
           <div className={containerClass}>
-            {videos.map((video, index) => (
+            <div className="flex aspect-video w-full items-center justify-center bg-[#0c0c0c]">
+              {cameraOn ? <UserCamera /> : "me"}
+            </div>
+            {youtubeLinks.map((video, index) => (
               <div
                 key={index}
                 className="flex aspect-video w-full items-center justify-center bg-[#3F3F3F]"
               >
-                {video === "me" ? (
-                  // 'me' div는 카메라 화면 (여기서는 단순 텍스트 처리)
-                  "me"
-                ) : (
-                  // 입력된 유튜브 링크에 따른 iframe embed
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src={video}
-                    title={`youtube-video-${index}`}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                )}
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={video}
+                  title={`youtube-video-${index}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* 하단 Toolbar에 onAddVideo prop 전달 */}
-      <TestTool onAddVideo={openInputModal} />
+      {/* 컬러 피커 UI (TestTool 위에 위치) */}
+      {showColorPicker && (
+        <div className="absolute bottom-20 left-0 right-0 mx-auto w-64 max-w-[calc(100%-80px)]">
+          <div className="flex justify-center rounded bg-white p-4">
+            {/* 각 원형 버튼은 클릭 시 배경색 변경 */}
+            <div
+              onClick={() => changeBackgroundColor("#FC8472")}
+              className="mx-2 h-10 w-10 cursor-pointer rounded-full bg-[#FC8472]"
+            ></div>
+            <div
+              onClick={() => changeBackgroundColor("#344D2A")}
+              className="mx-2 h-10 w-10 cursor-pointer rounded-full bg-[#344D2A]"
+            ></div>
+            <div
+              onClick={() => changeBackgroundColor("#5B67A2")}
+              className="mx-2 h-10 w-10 cursor-pointer rounded-full bg-[#5B67A2]"
+            ></div>
+            <div
+              onClick={() => changeBackgroundColor("#222222")}
+              className="mx-2 h-10 w-10 cursor-pointer rounded-full bg-[#222222]"
+            ></div>
+          </div>
+        </div>
+      )}
+
+      {/* 하단 Toolbar */}
+      <TestTool
+        onAddVideo={openInputModal}
+        cameraOn={cameraOn}
+        toggleCamera={toggleCamera}
+        toggleColorPicker={toggleColorPicker}
+      />
 
       {/* 유튜브 링크 입력 모달 */}
       {showInput && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="w-[300px] rounded bg-white p-4">
-            <h2 className="mb-2 text-black">유튜브 링크 입력</h2>
+            <h2 className="mb-2 text-black">Enter YouTube Link</h2>
             <input
               type="text"
               value={inputLink}
@@ -119,13 +167,13 @@ function Test4() {
                 onClick={handleCancel}
                 className="rounded bg-gray-300 px-4 py-2 text-black"
               >
-                취소
+                Cancel
               </button>
               <button
                 onClick={handleOk}
                 className="rounded bg-blue-500 px-4 py-2 text-white"
               >
-                확인
+                Confirm
               </button>
             </div>
           </div>
