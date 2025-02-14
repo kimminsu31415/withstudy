@@ -113,7 +113,7 @@ function Test4() {
       {showInput && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="w-[300px] rounded bg-white p-4">
-            <h2 className="mb-2 text-black">유튜브 링크 입력</h2>
+            <h2 className="mb-2 text-black">Enter YouTube Link</h2>
             <input
               type="text"
               value={inputLink}
@@ -126,13 +126,13 @@ function Test4() {
                 onClick={handleCancel}
                 className="rounded bg-gray-300 px-4 py-2 text-black"
               >
-                취소
+                Cancel
               </button>
               <button
                 onClick={handleOk}
                 className="rounded bg-blue-500 px-4 py-2 text-white"
               >
-                확인
+                Confirm
               </button>
             </div>
           </div>
