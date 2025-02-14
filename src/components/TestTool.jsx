@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-function TestTool({ onAddVideo, cameraOn, toggleCamera }) {
+function TestTool({ onAddVideo, cameraOn, toggleCamera, toggleColorPicker }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  // 문서의 풀 스크린 상태 변경을 감지하여 상태 업데이트
+  // 풀 스크린 상태 변경 감지
   useEffect(() => {
     const handleFullScreenChange = () => {
       setIsFullScreen(!!document.fullscreenElement);
@@ -37,9 +37,11 @@ function TestTool({ onAddVideo, cameraOn, toggleCamera }) {
           <button onClick={toggleCamera} className="hover:text-orange-400">
             <p>{cameraOn ? "Video OFF" : "Video ON"}</p>
           </button>
-          {/* 영상 추가 버튼 */}
           <button onClick={onAddVideo} className="hover:text-orange-400">
             <p>Add Video</p>
+          </button>
+          <button onClick={toggleColorPicker} className="hover:text-orange-400">
+            <p>Color Change</p>
           </button>
         </div>
         <button
