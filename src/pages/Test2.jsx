@@ -1,10 +1,11 @@
 import React from "react";
+import TestTool from "../components/TestTool";
 
 function Test() {
   // 동영상 목록 (테스트: 3개인 경우)
-  const videos = ["1번 동영상", "2번 동영상", "3번 동영상"];
-  // 4번 동영상을 추가하고 싶다면 아래처럼 넣으면 됩니다.
-  // const videos = ["1번 동영상", "2번 동영상", "3번 동영상", "4번 동영상"];
+  const videos = ["Me", "1번 동영상", "2번 동영상"];
+  // 3번 동영상을 추가하고 싶다면 아래처럼 넣으면 됩니다.
+  // const videos = ["1번 동영상", "2번 동영상", "3번 동영상"];
 
   // 동영상 목록을 2개씩 묶어 행(row) 배열로 만듭니다.
   const videoRows = [];
@@ -40,7 +41,7 @@ function Test() {
               {row.map((video, index) => (
                 <div
                   key={index}
-                  className="flex aspect-video max-w-[calc(50%)] flex-1 items-center justify-center bg-slate-300"
+                  className="flex aspect-video max-w-[calc(50%)] flex-1 items-center justify-center bg-gray-500"
                 >
                   {video}
                 </div>
@@ -51,24 +52,7 @@ function Test() {
       </div>
 
       {/* 하단 Toolbar */}
-      <div className="absolute bottom-3 left-0 right-0 mx-auto w-full max-w-[calc(100%-80px)]">
-        <div className="flex h-14 items-center justify-center rounded-lg bg-black px-4">
-          <div className="flex gap-8 text-white">
-            <button className="hover:text-orange-400">
-              <p>비디오 ON</p>
-            </button>
-            <button className="hover:text-orange-400">
-              <p>영상 추가</p>
-            </button>
-          </div>
-          <button
-            onClick={toggleFullScreen}
-            className="absolute right-3 rounded-md bg-red-600 px-2 py-1 text-white hover:bg-red-700"
-          >
-            <p>꽉 채우기</p>
-          </button>
-        </div>
-      </div>
+      <TestTool />
     </div>
   );
 }
