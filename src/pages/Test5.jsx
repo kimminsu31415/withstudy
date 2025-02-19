@@ -78,6 +78,13 @@ function Test4() {
     setBgColor(color);
   };
 
+  // 영상 삭제 함수
+  const removeVideo = (indexToRemove) => {
+    setYoutubeLinks((prevLinks) =>
+      prevLinks.filter((_, index) => index !== indexToRemove),
+    );
+  };
+
   // 영상 영역의 레이아웃 (카메라 영상 포함)
   const totalVideos = 1 + youtubeLinks.length;
   const containerClass =
@@ -94,13 +101,13 @@ function Test4() {
       <div className="mx-auto flex w-full max-w-[calc(100%-80px)] flex-col items-center justify-center desktop:px-20 desktop:pb-10">
         <div className="flex max-h-screen w-full flex-col gap-5">
           <div className={containerClass}>
-            <div className="flex aspect-video w-full items-center justify-center bg-[#0c0c0c]">
+            <div className="relative flex aspect-video w-full items-center justify-center bg-[#0c0c0c]">
               {cameraOn ? <UserCamera /> : "me"}
             </div>
             {youtubeLinks.map((video, index) => (
               <div
                 key={index}
-                className="flex aspect-video w-full items-center justify-center bg-[#3F3F3F]"
+                className="relative flex aspect-video w-full items-center justify-center bg-[#3F3F3F]"
               >
                 <iframe
                   width="100%"
@@ -111,6 +118,13 @@ function Test4() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
+                {/* 삭제 버튼: 오른쪽 상단에 작게 표시 */}
+                <button
+                  onClick={() => removeVideo(index)}
+                  className="absolute right-2 top-2 rounded-full bg-red-500 px-2 py-1 text-xs text-white hover:bg-red-600"
+                >
+                  삭제
+                </button>
               </div>
             ))}
           </div>
