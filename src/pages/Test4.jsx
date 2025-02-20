@@ -45,7 +45,7 @@ function Test4() {
     }
   };
 
-  // 모달의 확인 버튼
+  // 모달 확인 버튼
   const handleOk = () => {
     if (inputLink.trim() === "") {
       alert("Please enter a YouTube link.");
@@ -57,7 +57,7 @@ function Test4() {
     setShowInput(false);
   };
 
-  // 모달의 취소 버튼
+  // 모달 취소 버튼
   const handleCancel = () => {
     setInputLink("");
     setShowInput(false);
