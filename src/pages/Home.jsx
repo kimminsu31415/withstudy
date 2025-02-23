@@ -46,7 +46,7 @@ function Header() {
         <div className="md:block hidden">
           <a
             href="/contact"
-            className="rounded bg-orange-500 px-4 py-2 font-semibold text-white transition hover:bg-orange-600"
+            className="rounded bg-blue-500 px-4 py-2 font-semibold text-white transition hover:bg-orange-600"
           >
             Speak with us
           </a>
