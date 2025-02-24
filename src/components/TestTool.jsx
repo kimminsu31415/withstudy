@@ -46,7 +46,7 @@ function TestTool({ onAddVideo, cameraOn, toggleCamera, toggleColorPicker }) {
         </div>
         <button
           onClick={toggleFullScreen}
-          className="absolute right-3 rounded-md bg-red-600 px-2 py-1 text-white hover:bg-red-700"
+          className="absolute right-3 rounded-md bg-[#3381FF] px-3 py-1 text-white hover:bg-[#163EAD]"
         >
           <p>{isFullScreen ? "Exit Full Screen" : "Full Screen"}</p>
         </button>

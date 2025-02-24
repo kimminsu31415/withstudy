@@ -10,7 +10,7 @@ function Home() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
-        <Testimonials />
+        {/*<Testimonials />*/}
         <Resources />
       </main>
       <Footer />
@@ -23,35 +23,14 @@ function Header() {
     <header className="bg-darkestGreen absolute left-0 right-0 top-0 z-50 transition-colors duration-300">
       <div className="container mx-auto flex items-center justify-between px-6 py-5">
         <a href="/" className="max-w-[120px]">
-          {/* 로고 이미지 혹은 SVG */}
-          <img src="/logo.svg" alt="Logo" className="h-auto w-full" />
+          {/* 로고 */}
+          <img
+            src="/logo_text_white.svg"
+            alt="Logo"
+            className="h-auto w-full"
+          />
         </a>
-        <nav className="md:flex hidden space-x-6 text-sm font-medium text-white">
-          <a href="/platform" className="transition hover:opacity-80">
-            Technology
-          </a>
-          <a href="/customers" className="transition hover:opacity-80">
-            Customers
-          </a>
-          <a href="/resources" className="transition hover:opacity-80">
-            Resources
-          </a>
-          <a
-            href="https://new.example.com"
-            className="transition hover:opacity-80"
-          >
-            What's New
-          </a>
-        </nav>
-        <div className="md:block hidden">
-          <a
-            href="/contact"
-            className="rounded bg-blue-500 px-4 py-2 font-semibold text-white transition hover:bg-orange-600"
-          >
-            Speak with us
-          </a>
-        </div>
-        {/* 모바일 메뉴 버튼 */}
+        {/* 모바일 메뉴 버튼 
         <div className="md:hidden">
           <button className="text-white focus:outline-none">
             <svg
@@ -68,7 +47,7 @@ function Header() {
               />
             </svg>
           </button>
-        </div>
+        </div>*/}
       </div>
     </header>
   );
@@ -83,18 +62,17 @@ function HeroSection() {
     <section className="bg-darkestGreen mt-20 py-16 text-white">
       <div className="container mx-auto text-center">
         <h1 className="mb-4 text-4xl font-bold">
-          The operating system for capital markets.
+          You’re Studying, <br /> but you don’t want to feel alone
         </h1>
         <p className="mx-auto mb-6 max-w-xl text-lg">
-          Setpoint embeds with borrowers and lenders to enhance debt facility
-          management.
+          Stay in the best mood to keep your motivation alive.
         </p>
 
         <button
           onClick={handleTest4Page}
-          className="rounded bg-orange-500 px-6 py-3 font-semibold text-white transition duration-200 hover:bg-orange-600"
+          className="mt-16 rounded bg-[#3381FF] px-6 py-3 font-semibold text-white transition duration-200 hover:bg-[#163EAD]"
         >
-          Test4
+          Start With Study
         </button>
       </div>
     </section>
@@ -133,7 +111,7 @@ function Resources() {
     <section className="text-darkGreen bg-white py-16">
       <div className="container mx-auto">
         <h2 className="mb-8 text-center text-3xl font-bold">
-          Resources from Setpoint
+          How to use [Study With]?
         </h2>
         <div className="md:grid-cols-2 grid gap-8">
           {/* Resource 카드 예시 */}
@@ -150,12 +128,13 @@ function Resources() {
               <p className="mb-4 text-sm text-gray-600">
                 Short description of the resource.
               </p>
+              {/*
               <a
                 href="/resource-link"
                 className="font-bold text-orange-500 hover:underline"
               >
                 Read more
-              </a>
+              </a>*/}
             </div>
           </div>
           {/* 추가 리소스 카드들 */}
@@ -167,44 +146,38 @@ function Resources() {
 
 function Footer() {
   return (
-    <footer className="bg-taupe text-darkGreen py-12">
+    <footer className="bg-taupe text-darkGreen py-12 text-white">
       <div className="md:grid-cols-3 container mx-auto grid grid-cols-1 gap-8">
         <div>
-          <img src="/SP-Logo.svg" alt="Setpoint Logo" className="w-48" />
-          <p className="mt-4 text-sm">© 2025 Setpoint. All rights reserved.</p>
+          <img
+            src="/Logo_text_white.svg"
+            alt="Setpoint Logo"
+            className="w-48"
+          />
+          <p className="mt-4 text-sm">
+            © 2025 WithStudy. All rights reserved.
+          </p>
         </div>
+
         <div>
-          <h4 className="mb-4 text-lg font-bold">Solutions</h4>
+          <h4 className="mb-4 text-lg font-bold">Contact</h4>
           <ul className="space-y-2">
             <li>
-              <a href="/platform" className="transition hover:opacity-75">
-                Technology
-              </a>
-            </li>
-            {/* 추가 링크 */}
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-4 text-lg font-bold">Company</h4>
-          <ul className="space-y-2">
-            <li>
-              <a href="/about" className="transition hover:opacity-75">
-                About
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:opacity-75"
+              >
+                GitHub
               </a>
             </li>
             <li>
-              <a href="/careers" className="transition hover:opacity-75">
-                Careers
-              </a>
-            </li>
-            <li>
-              <a href="/contact" className="transition hover:opacity-75">
-                Contact
-              </a>
-            </li>
-            <li>
-              <a href="/privacy-policy" className="transition hover:opacity-75">
-                Privacy Policy
+              <a
+                href="mailto:your.email@example.com"
+                className="transition hover:opacity-75"
+              >
+                Email
               </a>
             </li>
           </ul>
