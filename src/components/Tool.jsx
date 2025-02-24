@@ -7,6 +7,7 @@ import DraggableModal from "./DraggableModal"; // 드래그 모달 (Tailwind 버
 function Tool({ setVideoUrl }) {
   const [isTimerModalOpen, setIsTimerModalOpen] = useState(false);
   const [isDdayModalOpen, setIsDdayModalOpen] = useState(false);
+  const [youtubeLink, setYoutubeLink] = useState("");
 
   // 타이머 모달 열고 닫기(토글)
   const toggleTimerModal = () => {
@@ -18,21 +19,78 @@ function Tool({ setVideoUrl }) {
     setIsDdayModalOpen((prev) => !prev);
   };
 
-  const handleVideoUpload = () => {
-    // 간단히 하드코딩된 유튜브 URL 설정
-    // (실제로는 prompt창 등을 이용해 사용자가 입력한 url을 setVideoUrl할 수도 있음)
-    setVideoUrl("https://www.youtube.com/embed/dQw4w9WgXcQ");
+  // 유튜브 "watch?v=" 형태 → embed 형태로 변환하는 함수
+  const convertToEmbedUrl = (link) => {
+    // 예: link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    // 결과: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    try {
+      const url = new URL(link);
+      if (
+        url.hostname.includes("youtube.com") ||
+        url.hostname.includes("youtu.be")
+      ) {
+        // 파라미터 v=VIDEO_ID
+        // or youtu.be/VIDEO_ID
+        // 단순히 watch?v= -> embed/
+        if (url.searchParams.has("v")) {
+          // watch?v=VIDEO_ID
+          const vid = url.searchParams.get("v");
+          return `https://www.youtube.com/embed/${vid}`;
+        } else {
+          // youtu.be/VIDEO_ID
+          // path : /dQw4w9WgXcQ
+          const path = url.pathname; // "/dQw4w9WgXcQ"
+          return `https://www.youtube.com/embed${path}`;
+        }
+      }
+      // fallback
+      return link;
+    } catch (error) {
+      // 잘못된 URL
+      return link;
+    }
   };
 
+  const handlePlayVideo = () => {
+    if (youtubeLink.trim() === "") return;
+
+    // "https://www.youtube.com/watch?v=..." -> "https://www.youtube.com/embed/..."
+    const embedUrl = convertToEmbedUrl(youtubeLink);
+    setVideoUrl(embedUrl);
+  };
+
+  const handleClearVideo = () => {
+    setVideoUrl(null);
+    setYoutubeLink("");
+  };
   return (
     <div className="flex h-14 w-full items-center justify-center gap-4 rounded-lg bg-black p-2">
-      {/* 예시: 영상 올리기 버튼 */}
+      {/* 유튜브 링크 입력창 */}
+      <input
+        type="text"
+        placeholder="유튜브 링크를 입력하세요"
+        className="w-64 rounded px-2 py-1 text-black"
+        value={youtubeLink}
+        onChange={(e) => setYoutubeLink(e.target.value)}
+      />
+
       <button
-        onClick={handleVideoUpload}
-        className="rounded bg-blue-500 px-4 py-2 hover:bg-blue-600"
+        onClick={handlePlayVideo}
+        className="cursor-pointer rounded border-none bg-transparent px-4 py-2 text-white transition-colors duration-200 hover:text-[#fbbf24]"
       >
-        영상 올리기
+        영상 재생
       </button>
+
+      <span className="h-6 w-px bg-white" />
+
+      <button
+        onClick={handleClearVideo}
+        className="cursor-pointer rounded border-none bg-transparent px-4 py-2 text-white transition-colors duration-200 hover:text-[#fbbf24]"
+      >
+        영상 제거
+      </button>
+
+      <span className="h-6 w-px bg-white" />
 
       {/* 타이머 버튼 */}
       <button
