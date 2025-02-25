@@ -164,7 +164,7 @@ function Footer() {
           <ul className="space-y-2">
             <li>
               <a
-                href="https://github.com/yourusername"
+                href="https://github.com/kimminsu31415"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition hover:opacity-75"
@@ -174,10 +174,10 @@ function Footer() {
             </li>
             <li>
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:your.email@gmail.com"
                 className="transition hover:opacity-75"
               >
-                Email
+                Email:
               </a>
             </li>
           </ul>
