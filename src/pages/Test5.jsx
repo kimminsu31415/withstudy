@@ -164,35 +164,7 @@ function Test4() {
         toggleColorPicker={toggleColorPicker}
       />
 
-      {/* 유튜브 링크 입력 모달 */}
-      {showInput && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="w-[300px] rounded bg-white p-4">
-            <h2 className="mb-2 text-black">Enter YouTube Link</h2>
-            <input
-              type="text"
-              value={inputLink}
-              onChange={(e) => setInputLink(e.target.value)}
-              className="mb-4 w-full rounded border border-gray-300 p-2 text-black"
-              placeholder="https://www.youtube.com/watch?v=..."
-            />
-            <div className="flex justify-end gap-2">
-              <button
-                onClick={handleCancel}
-                className="rounded bg-gray-300 px-4 py-2 text-black"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleOk}
-                className="rounded bg-blue-500 px-4 py-2 text-white"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+ 
     </div>
   );
 }
