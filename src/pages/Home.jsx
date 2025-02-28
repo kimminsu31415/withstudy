@@ -2,8 +2,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-//https://www.setpoint.io/
-
 function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-black">
