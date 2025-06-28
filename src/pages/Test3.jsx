@@ -1,3 +1,5 @@
+// 옛날 버전(기본 링크 저장, 영상 추가 가능)
+
 // src/AppContent.js
 import React, { useState, useRef, useEffect } from "react";
 //import axios from "axios";

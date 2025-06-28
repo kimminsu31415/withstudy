@@ -1,3 +1,5 @@
+// 최신 버전
+
 import React, { useState } from "react";
 import TestTool from "../components/TestTool";
 import UserCamera from "../components/UserCamera";
@@ -78,7 +80,7 @@ function Test4() {
     setBgColor(color);
   };
 
-  // 영상 영역의 레이아웃 
+  // 영상 영역의 레이아웃
   const totalVideos = 1 + youtubeLinks.length;
   const containerClass =
     totalVideos >= 3
