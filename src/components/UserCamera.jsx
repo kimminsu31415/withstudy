@@ -1,3 +1,5 @@
+// test4에서 사용하는 유저 카메라 컴포넌트
+
 import React, { useRef, useEffect } from "react";
 
 function UserCamera() {

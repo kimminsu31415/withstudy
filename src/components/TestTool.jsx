@@ -1,3 +1,5 @@
+// test4(최신)에서 사용하는 하단 tool
+
 import React, { useState, useEffect } from "react";
 
 function TestTool({ onAddVideo, cameraOn, toggleCamera, toggleColorPicker }) {

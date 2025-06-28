@@ -1,3 +1,5 @@
+// test3에서 사용하는 메인 페이지(영상, 하단 툴 컴포넌트 모음)
+
 // src/pages/StudyRoom.jsx
 import React, { useState } from "react";
 import MainContent from "../components/MainContent";

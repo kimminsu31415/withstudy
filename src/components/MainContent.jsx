@@ -1,4 +1,6 @@
 // src/components/MainContent.jsx
+// 따로 사용하는 곳 없음
+
 import React from "react";
 import YouTubeEmbed from "./YouTubeEmbed";
 

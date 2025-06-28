@@ -1,3 +1,5 @@
+// test3에서 사용하는 하단 tool
+
 // src/components/Tool.jsx
 import React, { useState } from "react";
 import { Tooltip } from "react-tooltip"; // 화면공유 툴팁 용도

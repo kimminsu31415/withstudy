@@ -1,4 +1,7 @@
 // src/components/YouTubeEmbed.jsx
+// MainContent에서 사용
+// 따로 사용하는 곳 업음
+
 import React from "react";
 
 function YouTubeEmbed({ url }) {
